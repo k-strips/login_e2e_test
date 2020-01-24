@@ -1,12 +1,13 @@
 import React, { Component }from 'react';
 import './App.css';
-
 import { FormField, Button } from './components/my_components';
+
 
 let credentials = {
   name: "k-strips",
   password: "$all4you",
 }
+
 
 class App extends Component{
   constructor(props){
@@ -49,6 +50,7 @@ class App extends Component{
         {isUser ? <h2>Hi! Welcome back {name}</h2>
         :
         <div className="card">
+        <h2>Login with React and Cypress End-to-End Test</h2>
           <form id="login-form">
             Username: <FormField
             name="name"
