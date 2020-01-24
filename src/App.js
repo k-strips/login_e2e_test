@@ -1,6 +1,8 @@
 import React, { Component }from 'react';
 import './App.css';
 
+import { FormField, Button } from './components/my_components';
+
 let credentials = {
   name: "k-strips",
   password: "$all4you",
@@ -67,35 +69,13 @@ class App extends Component{
             Login
           </Button><br/>
           { errormessage ?
-            <small>Username or password is invalid</small>
+            <small id="errormessage">Username or password is invalid</small>
             : null}
         </div>
         }
       </div>
     );
   }
-}
-
-const FormField = ({name, value, className, type, placeholder, onChange }) =>
-  <input
-  name={name}
-  className={className}
-  type={type}
-  placeholder={placeholder}
-  value={value}
-  onChange={onChange}
-  />
-
-const Button = ({onClick, className, children,}) => {
-  return(
-    <button
-      onClick={onClick}
-      className={className}
-      type="submit"
-    >
-      {children}
-    </button>
-  );
 }
 
 export default App;

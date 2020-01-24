@@ -1,11 +1,17 @@
 describe("My Cypress e2e test", ()=>{
-  it("navigate to login page", ()=>{
-    cy.visit('http://localhost:3000/');
-  })
+  beforeEach(() => {
+    cy.visit('/')
+  });
 
-  it("login to application", () => {
+  it("test succeeds on expected input", () => {
     cy.get("input[name=name]").type("k-strips")
     cy.get("input[name=password]").type("$all4you")
+    cy.get("#login-form").submit()
+  })
+
+  it("test fails on wrong input", () => {
+    cy.get("input[name=name]").type("Boafo")
+    cy.get("input[name=password]").type("killa")
     cy.get("#login-form").submit()
   })
 })
