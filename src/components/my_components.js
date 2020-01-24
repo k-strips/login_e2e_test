@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormField = ({name, value, className, type, placeholder, onChange }) =>
+const FormField = ({name, value, className, type, placeholder, onChange, onFocus }) =>
   <input
   name={name}
   className={className}
@@ -8,6 +8,7 @@ const FormField = ({name, value, className, type, placeholder, onChange }) =>
   placeholder={placeholder}
   value={value}
   onChange={onChange}
+  onFocus={onFocus}
   />
 
 const Button = ({onClick, className, children,}) => {

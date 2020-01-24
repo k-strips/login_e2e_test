@@ -25,6 +25,12 @@ class App extends Component{
     this.setState({[name]: value});
   }
 
+  onInputFocus = (e) => {
+    const {name} = e.target;
+    this.setState({errormessage:false});
+    this.setState({[name]:""})
+  }
+
   onSubmit = () => {
     const {name, password, credentials } = this.state;
     if(name === credentials.name && password === credentials.password){
@@ -51,6 +57,7 @@ class App extends Component{
             placeholder="Enter username"
             value={name}
             onChange={this.onInputChange}
+            onFocus={this.onInputFocus}
             /><br/>
             Password: <FormField
             name="password"
@@ -59,6 +66,7 @@ class App extends Component{
             placeholder="Enter Password"
             value={password}
             onChange={this.onInputChange}
+            onFocus={this.onInputFocus}
             />
           </form>
           <Button
@@ -69,7 +77,7 @@ class App extends Component{
             Login
           </Button><br/>
           { errormessage ?
-            <small id="errormessage">Username or password is invalid</small>
+            <small id="errormessage">Username or password is invalid!</small>
             : null}
         </div>
         }

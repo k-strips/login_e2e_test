@@ -3,15 +3,17 @@ describe("My Cypress e2e test", ()=>{
     cy.visit('/')
   });
 
-  it("test succeeds on expected input", () => {
+  it("test succeeds on expected input values", () => {
     cy.get("input[name=name]").type("k-strips")
     cy.get("input[name=password]").type("$all4you")
-    cy.get("#login-form").submit()
+    cy.get(".Login_button").click()
   })
 
-  it("test fails on wrong input", () => {
-    cy.get("input[name=name]").type("Boafo")
-    cy.get("input[name=password]").type("killa")
-    cy.get("#login-form").submit()
+  it("test fails on wrong input values", () => {
+    cy.get("input[name=name]").type("Obosom p-Young")
+    cy.get("input[name=password]").type("$atta-adwoa")
+    cy.get(".Login_button").click()
+    cy.get("small").contains("Username or password is invalid")
   })
+
 })
