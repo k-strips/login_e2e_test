@@ -2,7 +2,6 @@ import React, { Component }from 'react';
 import './App.css';
 import { FormField, Button } from './components/my_components';
 
-
 let credentials = {
   name: "k-strips",
   password: "$all4you",
