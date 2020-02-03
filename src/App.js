@@ -1,51 +1,41 @@
-import React, { Component }from 'react';
-import './App.css';
-import { FormField, Button } from './components/my_components';
+import React, {useState} from 'react'
+import "./App.css"
+import {Button, FormField} from './components/my_components'
 
 let credentials = {
   name: "k-strips",
   password: "$all4you",
 }
 
+const App = () => {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [isUser, setIsUser] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
-class App extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      credentials,
-      name: "",
-      password: "",
-      isUser: false,
-      errormessage: false,
-    };
-  }
-
-  onInputChange = (e) => {
-    const {name, value} = e.target;
-    this.setState({[name]: value});
-  }
-
-  onInputFocus = (e) => {
-    const {name} = e.target;
-    this.setState({errormessage:false});
-    this.setState({[name]:""})
-  }
-
-  onSubmit = () => {
-    const {name, password, credentials } = this.state;
+  const onSubmit = () => {
     if(name === credentials.name && password === credentials.password){
-      this.setState({isUser: true});
-      this.setState({errormessage: false});
+      setIsUser(true);
+      setErrorMessage(false);
     }else{
-      this.setState({isUser: false});
-      this.setState({errormessage: true});
+      setIsUser(false);
+      setErrorMessage(true);
     }
   }
 
-  render(){
-    const {name, password, isUser, errormessage} = this.state;
-    return(
-      <div className="page">
+  const onInputChange = (e) => {
+    const {name, value} = e.target;
+    setErrorMessage(false);
+    if(name === "name"){
+      setName(value);
+    }
+    if(name === "password"){
+      setPassword(value);
+    }
+  }
+
+  return(
+    <div className="page">
         {isUser ? <h2>Hi! Welcome back {name}</h2>
         :
         <div className="card">
@@ -57,8 +47,7 @@ class App extends Component{
             type="text"
             placeholder="Enter username"
             value={name}
-            onChange={this.onInputChange}
-            onFocus={this.onInputFocus}
+            onChange={onInputChange}
             /><br/>
             Password: <FormField
             name="password"
@@ -66,25 +55,23 @@ class App extends Component{
             type="password"
             placeholder="Enter Password"
             value={password}
-            onChange={this.onInputChange}
-            onFocus={this.onInputFocus}
+            onChange={onInputChange}
             />
           </form>
           <Button
             className = "Login_button"
-            onClick={this.onSubmit}
+            onClick={onSubmit}
             type="button"
           >
             Login
           </Button><br/>
-          { errormessage ?
+        { errorMessage ?
             <small id="errormessage">Username or password is invalid!</small>
             : null}
         </div>
         }
       </div>
-    );
-  }
+  )
 }
 
 export default App;

@@ -1,15 +1,4 @@
-import React from 'react';
-
-const FormField = ({name, value, className, type, placeholder, onChange, onFocus }) =>
-  <input
-  name={name}
-  className={className}
-  type={type}
-  placeholder={placeholder}
-  value={value}
-  onChange={onChange}
-  onFocus={onFocus}
-  />
+import React from 'react'
 
 const Button = ({onClick, className, children,}) => {
   return(
@@ -23,4 +12,14 @@ const Button = ({onClick, className, children,}) => {
   );
 }
 
-export { FormField, Button };
+const FormField = ({name, value, className, type, placeholder, onChange, onFocus }) =>
+  <input
+  name={name}
+  className={className}
+  type={type}
+  placeholder={placeholder}
+  value={value}
+  onChange={onChange}
+  />
+
+export {Button, FormField};
